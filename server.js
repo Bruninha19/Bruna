@@ -17,7 +17,7 @@ app.get('/route', (req, res) => {
 
 app.get('/consulta-cep/:cep', async (req, res) => {
     const cep = req.params.cep; //Obtendo o CEP da URL
-    const cepRegex = /^[0-9]{5}-?[09]{3}$/;
+    const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
     cepRegex.test(cep);
     
     try{
