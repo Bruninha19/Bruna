@@ -1,6 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-const cepRegex = /^[0-9]{5}-?[09]{3}$/;
 
 const app = express();
 const port = 3000;
@@ -18,7 +17,11 @@ app.get('/route', (req, res) => {
 app.get('/consulta-cep/:cep', async (req, res) => {
     const cep = req.params.cep; //Obtendo o CEP da URL
     const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
-    cepRegex.test(cep);
+
+     // Verificando se o CEP é válido
+        if (!cepRegex.test(cep)) {
+            return res.status(400).send('CEP inválido');
+        }
     
     try{
         // Fazendo a requisição para a API do ViaCEP
